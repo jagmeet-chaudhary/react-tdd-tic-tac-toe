@@ -1,9 +1,9 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import React from "react";
+import { render, screen,getByTestId } from "@testing-library/react";
+import App from "./App";
 
-test('renders learn react link', () => {
+test("renders grid", () => {
   render(<App />);
-  const linkElement = screen.getByText('Tic tac toe');
-  expect(linkElement).toBeInTheDocument();
+  const gridComponent = screen.getByTestId("ttt-grid");
+  expect(gridComponent).toBeInTheDocument();
 });
