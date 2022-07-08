@@ -7,4 +7,8 @@ describe('tic tac toe',()=>{
         const grid = screen.getByTestId('tictactoe')
         expect(grid).toBeInTheDocument();
     })
+
+    test('player1 has first turn',()=>{
+        
+    })
 })
