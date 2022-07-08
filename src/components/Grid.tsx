@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Cell from "./Cell";
 import { GridProps, PlayerTurn } from "./types";
+
 const Grid = (props: GridProps) => {
   const [turn, setTurn] = useState(PlayerTurn.Player1);
 

@@ -1,6 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import Grid from "./Grid";
-
 describe('Grid',()=>{
     test("renders 9 cells",()=>{
         render(<Grid />);
@@ -43,13 +42,20 @@ describe('Grid',()=>{
         fireEvent.click(cells[4]);
         expect(cells[4]).toHaveDisplayValue('o');
     })
-    test('click on a filled cell should not change turn',()=>{
+    test('click on a filled cell should not change value',()=>{
         render(<Grid />); 
         const cells = screen.getAllByTestId('ttt-cell')
         fireEvent.click(cells[1]);
         fireEvent.click(cells[1]);
         expect(cells[1]).toHaveDisplayValue('x');
     })
-
+    test('click on a filled cell should not change the player turn',()=>{
+        render(<Grid />); 
+        const cells = screen.getAllByTestId('ttt-cell')
+        fireEvent.click(cells[1]);
+        fireEvent.click(cells[1]);
+        fireEvent.click(cells[2]);
+        expect(cells[2]).toHaveDisplayValue('o');
+    })
 
 }); 

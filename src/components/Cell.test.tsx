@@ -1,5 +1,6 @@
 import React from "react";
 import { render, screen ,fireEvent} from "@testing-library/react";
+import userEvent from '@testing-library/user-event'
 import Cell from "./Cell";
 import { PlayerTurn } from "./types";
 
@@ -50,12 +51,5 @@ describe("Cell", () => {
     expect(button).toHaveDisplayValue('o');
   })
 
-  test("should not change value if already filled",()=>{
-    render(<Cell currentPlayer={PlayerTurn.Player1} onClick={handleClick}/>);
-    const button = screen.getByTestId("ttt-cell");
-    fireEvent.click(button);
-    fireEvent.click(button);
-    expect(button).toHaveDisplayValue('x');
-  })
 
 });
