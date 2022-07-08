@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {  useState } from "react";
 import Cell from "./Cell";
 import { GridProps, PlayerTurn } from "./types";
 
@@ -23,7 +23,7 @@ const Grid = (props: GridProps) => {
 
   }
 
-  return <div data-testid="ttt-grid">{getGridCells()}</div>;
+  return <div data-testid="ttt-grid" className="ttt-grid">{getGridCells()}</div>;
 };
 
 export default Grid;

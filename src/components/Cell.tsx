@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../App.css";
+
 import { CellProps, PlayerTurn } from "./types";
 const PLAYER_1_SYMBOL = "x";
 const PLAYER_2_SYMBOL = "o";
