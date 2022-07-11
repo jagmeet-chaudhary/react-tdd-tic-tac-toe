@@ -2,5 +2,5 @@
     * which player won
     * freeze game
 * game title
-* restart logic
+* Reset logic - Use grid array to set the values of cell rather than sending player turn
 * play with computer

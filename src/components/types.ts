@@ -6,6 +6,7 @@ export type GridProps = {
 export type CellProps = {
     currentPlayer? : PlayerTurn;
     onClick: () => void;
+    reset : boolean;
 }
 
 export enum PlayerTurn {

@@ -7,7 +7,7 @@ function Cell(props: CellProps) {
   const [value, setValue] = useState("");
   function handleClick() {
     if (value !== "") return;
-    props.currentPlayer === PlayerTurn.Player1
+    props.value === PlayerTurn.Player1
       ? setValue(PLAYER_1_SYMBOL)
       : setValue(PLAYER_2_SYMBOL);
 
@@ -18,7 +18,7 @@ function Cell(props: CellProps) {
       type="button"
       data-testid="ttt-cell"
       className="ttt-cell"
-      value={value}
+      value={props.reset ? "" : value}
       onClick={handleClick}
     ></input>
   );

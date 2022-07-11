@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
+import { cloneElement } from "react";
 import Grid from "./Grid";
 describe('Grid',()=>{
     test("renders 9 cells",()=>{
@@ -57,5 +58,37 @@ describe('Grid',()=>{
         fireEvent.click(cells[2]);
         expect(cells[2]).toHaveDisplayValue('o');
     })
+    test('renders reset button',()=>{
+        render(<Grid/>);
+        const resetButton = screen.getByDisplayValue('Reset');
+        expect(resetButton).toBeInTheDocument();
+    })
+    test('clicking reset button should reset the grid to initial state',()=>{
+        render(<Grid/>);
+        const resetButton = screen.getByDisplayValue('Reset');
+
+        const cells = screen.getAllByTestId('ttt-cell')
+        fireEvent.click(cells[1]);
+        fireEvent.click(cells[3]);
+        fireEvent.click(resetButton);
+        cells.forEach((value,index)=>{
+            expect(value).toHaveDisplayValue('');
+        })
+    })
+
+    test('After reset players should be able to play new game',()=>{
+        render(<Grid/>);
+        const resetButton = screen.getByDisplayValue('Reset');
+
+        const cells = screen.getAllByTestId('ttt-cell')
+        fireEvent.click(cells[1]);
+        fireEvent.click(cells[3]);
+        fireEvent.click(resetButton);
+        fireEvent.click(cells[1]);
+        fireEvent.click(cells[3]);
+        expect(cells[1]).toHaveDisplayValue('x');
+        expect(cells[3]).toHaveDisplayValue('o');
+    })
+
 
 }); 
