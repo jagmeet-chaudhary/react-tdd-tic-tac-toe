@@ -2,6 +2,13 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { cloneElement } from "react";
 import Grid from "./Grid";
 describe('Grid',()=>{
+    test("array copy logic",()=> {
+        let a1 = new Array(9).fill(0);
+        let a2 = [...a1];
+        expect(a1).toEqual(a2);
+        a2[3] = 1;
+        expect(a2[3]).toEqual(1);
+    })
     test("renders 9 cells",()=>{
         render(<Grid />);
         const cells = screen.getAllByTestId('ttt-cell')

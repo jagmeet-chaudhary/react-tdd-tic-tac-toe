@@ -2,13 +2,13 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Cell from "./Cell";
-import { PlayerTurn } from "./types";
+import { Player } from "./types";
 
 describe("Cell", () => {
   var handleClick = function () {};
 
   test("renders a button", () => {
-    render(<Cell onClick={handleClick} />);
+    render(<Cell  value={Player.None} onClick={handleClick} />);
     const button = screen.getByTestId("ttt-cell");
     expect(button).toBeInTheDocument();
   });
@@ -36,7 +36,7 @@ describe("Cell", () => {
   });
 
   test("should display value 'x' on click for player 1", () => {
-    render(<Cell value={PlayerTurn.Player1} onClick={handleClick} />);
+    render(<Cell value={Player.Player1} onClick={handleClick} />);
 
     const button = screen.getByTestId("ttt-cell");
     fireEvent.click(button);
@@ -44,7 +44,7 @@ describe("Cell", () => {
   });
 
   test("should display value 'o' on click for player 2", () => {
-    render(<Cell value={PlayerTurn.Player2} onClick={handleClick} />);
+    render(<Cell value={Player.Player2} onClick={handleClick} />);
 
     const button = screen.getByTestId("ttt-cell");
     fireEvent.click(button);

@@ -1,15 +1,15 @@
 export type GridProps = {
-    cellIndex? : number;
-    cellValue? : string;
-}
+  cellIndex?: number;
+  cellValue?: string;
+};
 
 export type CellProps = {
-    currentPlayer? : PlayerTurn;
-    onClick: () => void;
-    reset : boolean;
-}
+  value: Player;
+  onClick: () => void;
+};
 
-export enum PlayerTurn {
-    Player1 = 1,
-    Player2 = 2
+export enum Player {
+  None = 0,
+  Player1 = 1,
+  Player2 = 2,
 }

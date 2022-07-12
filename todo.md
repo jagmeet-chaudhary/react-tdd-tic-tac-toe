@@ -2,5 +2,5 @@
     * which player won
     * freeze game
 * game title
-* Reset logic - Use grid array to set the values of cell rather than sending player turn
+* Reset logic - handle click logic in cell is not required it seems.We can directly call parent props on click
 * play with computer

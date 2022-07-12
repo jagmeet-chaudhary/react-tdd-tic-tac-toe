@@ -1,27 +1,43 @@
 import React, { useState } from "react";
 import Cell from "./Cell";
-import { GridProps, PlayerTurn } from "./types";
+import { GridProps, Player } from "./types";
 
 const Grid = (props: GridProps) => {
-  const [turn, setTurn] = useState(PlayerTurn.Player1);
-  const [reset, setReset] = useState(false);
-  const [cellArray, setCellArray] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0]);
-  const handleCellClick = () => {
+  const [turn, setTurn] = useState(Player.Player1);
+  const [cells, setCells] = useState([
+    Player.None,
+    Player.None,
+    Player.None,
+    Player.None,
+    Player.None,
+    Player.None,
+    Player.None,
+    Player.None,
+    Player.None,
+  ]); //todo: make this more concise
+  const handleCellClick = (index: number) => {
+    setCells((prev) => {
+      let current = [...prev];
+      current[index] = turn;
+      return current;
+    });
     setTurn((prevPlayer) => {
-      return prevPlayer === PlayerTurn.Player1
-        ? PlayerTurn.Player2
-        : PlayerTurn.Player1;
+      return prevPlayer === Player.Player1 ? Player.Player2 : Player.Player1;
     });
   };
 
   const handleResetClick = () => {
-    setReset(true);
+     setCells(prev=> new Array(9).fill(Player.None))
   };
   function getGridCells() {
     const content = [];
     for (let i = 0; i < 9; i++) {
       content.push(
-        <Cell key={i} value={turn} reset={reset} onClick={handleCellClick} />
+        <Cell
+          key={i}
+          value={cells[i]}
+          onClick={() => handleCellClick(i)}
+        />
       );
     }
 
