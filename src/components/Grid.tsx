@@ -4,40 +4,30 @@ import { GridProps, Player } from "./types";
 
 const Grid = (props: GridProps) => {
   const [turn, setTurn] = useState(Player.Player1);
-  const [cells, setCells] = useState([
-    Player.None,
-    Player.None,
-    Player.None,
-    Player.None,
-    Player.None,
-    Player.None,
-    Player.None,
-    Player.None,
-    Player.None,
-  ]); //todo: make this more concise
+  const [cells, setCells] = useState(new Array(9).fill(Player.None));
   const handleCellClick = (index: number) => {
     setCells((prev) => {
       let current = [...prev];
-      current[index] = turn;
+      if (current[index] === Player.None) {
+        current[index] = turn;
+        setTurn((prevPlayer) => {
+          return prevPlayer === Player.Player1
+            ? Player.Player2
+            : Player.Player1;
+        });
+      }
       return current;
-    });
-    setTurn((prevPlayer) => {
-      return prevPlayer === Player.Player1 ? Player.Player2 : Player.Player1;
     });
   };
 
   const handleResetClick = () => {
-     setCells(prev=> new Array(9).fill(Player.None))
+    setCells((prev) => new Array(9).fill(Player.None));
   };
   function getGridCells() {
     const content = [];
     for (let i = 0; i < 9; i++) {
       content.push(
-        <Cell
-          key={i}
-          value={cells[i]}
-          onClick={() => handleCellClick(i)}
-        />
+        <Cell key={i} value={cells[i]} onClick={() => handleCellClick(i)} />
       );
     }
 

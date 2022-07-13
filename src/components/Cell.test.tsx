@@ -14,7 +14,7 @@ describe("Cell", () => {
   });
 
   test("has height 100px", () => {
-    render(<Cell onClick={handleClick} />);
+    render(<Cell value={Player.None} onClick={handleClick} />);
     const button = screen.getByTestId("ttt-cell");
     expect(button).toHaveStyle({
       height: "100",
@@ -22,7 +22,7 @@ describe("Cell", () => {
   });
 
   test("has width 100px", () => {
-    render(<Cell onClick={handleClick} />);
+    render(<Cell value={Player.None} onClick={handleClick} />);
     const button = screen.getByTestId("ttt-cell");
     expect(button).toHaveStyle({
       width: "100",
@@ -30,13 +30,13 @@ describe("Cell", () => {
   });
 
   test("default display value is empty string", () => {
-    render(<Cell onClick={handleClick} />);
+    render(<Cell value={Player.None} onClick={handleClick} />);
     const button = screen.getByTestId("ttt-cell");
     expect(button).toHaveDisplayValue("");
   });
 
   test("should display value 'x' on click for player 1", () => {
-    render(<Cell value={Player.Player1} onClick={handleClick} />);
+    render(<Cell  value={Player.Player1} onClick={handleClick} />);
 
     const button = screen.getByTestId("ttt-cell");
     fireEvent.click(button);
