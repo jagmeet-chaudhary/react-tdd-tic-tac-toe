@@ -1,11 +1,7 @@
 import "./App.css";
-import Grid from "./components/Grid";
+import TicTacToe from "./containers/TicTacToe";
 function App() {
-  return (
-
-      <Grid/>
-
-  );
+  return <TicTacToe />;
 }
 
 export default App;

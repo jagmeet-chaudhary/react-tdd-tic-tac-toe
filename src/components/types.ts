@@ -1,6 +1,8 @@
+
 export type GridProps = {
-  cellIndex?: number;
-  cellValue?: string;
+  onResetClick: ()=> void;
+  onCellClick : (index : number) => void;
+  squares : Player[];
 };
 
 export type CellProps = {
