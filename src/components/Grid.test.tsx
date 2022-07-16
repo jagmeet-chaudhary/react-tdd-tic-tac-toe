@@ -5,7 +5,7 @@ describe('Grid',()=>{
     var emptyFunction = function() { };
     let squares = new Array(9).fill(Player.None);
     test("renders 9 cells",()=>{
-        render(<Grid onResetClick={emptyFunction} onCellClick={emptyFunction} squares={squares} />);
+        render(<Grid onResetClick={emptyFunction} onCellClick={emptyFunction} squares={squares} result='' />);
         const cells = screen.getAllByTestId('ttt-cell')
         expect(cells.length).toEqual(9);
     })

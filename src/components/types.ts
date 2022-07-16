@@ -3,6 +3,7 @@ export type GridProps = {
   onResetClick: ()=> void;
   onCellClick : (index : number) => void;
   squares : Player[];
+  result : string;
 };
 
 export type CellProps = {

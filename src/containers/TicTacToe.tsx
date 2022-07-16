@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import { config } from "process";
+import React, { useEffect, useState, useRef } from "react";
 import Grid from "../components/Grid";
 import { Player } from "../components/types";
 
 const TicTacToe = () => {
   const [turn, setTurn] = useState(Player.Player1);
   const [squares, setSquares] = useState(new Array(9).fill(Player.None));
+  const [result, setResult] = useState("");
+  const winningConfigurations = [[0, 1, 2]];
+
   const handleCellClick = (index: number) => {
+    if(result !== '') return;//that mean is game is already over
+
     setSquares((prev) => {
       let current = [...prev];
       if (current[index] === Player.None) {
@@ -16,12 +22,40 @@ const TicTacToe = () => {
             : Player.Player1;
         });
       }
+      setResult(getWinner(current));
       return current;
     });
   };
 
+  const getWinner = (currentGrid: Player[]) => {
+    let result = "";
+    winningConfigurations.forEach((config) => {
+      if (isWinningCombination(config, currentGrid)) {
+        result = `Player ${currentGrid[config[0]]} wins!!`;
+      }
+    });
+    return result;
+  };
+  const isWinningCombination = (
+    winningConfig: Player[],
+    currentGrid: Player[]
+  ) => {
+    if (winningConfig.some((val) => currentGrid[val] === Player.None)) {
+      return false;
+    }
+
+    if (
+      currentGrid[winningConfig[0]] === currentGrid[winningConfig[1]] &&
+      currentGrid[winningConfig[1]] === currentGrid[winningConfig[2]]
+    ) {
+      return true;
+    }
+    return false;
+  };
   const handleResetClick = () => {
     setSquares((prev) => new Array(9).fill(Player.None));
+    setResult('');
+    setTurn(Player.Player1);
   };
 
   return (
@@ -29,6 +63,7 @@ const TicTacToe = () => {
       onResetClick={handleResetClick}
       onCellClick={handleCellClick}
       squares={squares}
+      result={result}
     />
   );
 };
