@@ -7,10 +7,19 @@ const TicTacToe = () => {
   const [turn, setTurn] = useState(Player.Player1);
   const [squares, setSquares] = useState(new Array(9).fill(Player.None));
   const [result, setResult] = useState("");
-  const winningConfigurations = [[0, 1, 2]];
+  const winningConfigurations = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+    [1, 4, 7],
+    [0, 3, 6],
+    [2, 5, 8],
+  ];
 
   const handleCellClick = (index: number) => {
-    if(result !== '') return;//that mean is game is already over
+    if (result !== "") return; //that mean is game is already over
 
     setSquares((prev) => {
       let current = [...prev];
@@ -54,7 +63,7 @@ const TicTacToe = () => {
   };
   const handleResetClick = () => {
     setSquares((prev) => new Array(9).fill(Player.None));
-    setResult('');
+    setResult("");
     setTurn(Player.Player1);
   };
 
