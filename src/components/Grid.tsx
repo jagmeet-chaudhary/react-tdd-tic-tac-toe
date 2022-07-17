@@ -23,7 +23,7 @@ const Grid = (props: GridProps) => {
         {getGridCells()}
       </div>
       <input type="button" value="Reset" onClick={props.onResetClick}></input>
-      <textarea data-testid="ttt-result" value={props.result} readOnly ></textarea>
+      <h1>{props.result}</h1>
      
     </div>
   );
